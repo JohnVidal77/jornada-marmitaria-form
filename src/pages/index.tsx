@@ -138,6 +138,13 @@ const Home: React.FC = () => {
     setSelectedAnswer(new Map(selectedAnswer.set(type, value)));
   };
 
+  const handleReset = () => {
+    setLevel(0);
+    setQuestionNine('');
+    setQuestionEight('');
+    setSelectedAnswer(new Map());
+  };
+
   const handleSubmitForm = (event: FormEvent) => {
     event.preventDefault();
 
@@ -260,7 +267,8 @@ const Home: React.FC = () => {
               </a>
               <button
                 className="p-4 w-full my-2 md:mx-2 md:w-auto duration-200 hover:opacity-50 bg-transparent border border-black rounded-lg"
-                type="button">
+                type="button"
+                onClick={handleReset}>
                 Quero Preencher novamente
               </button>
             </div>
