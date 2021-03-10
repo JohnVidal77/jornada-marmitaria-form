@@ -10,7 +10,7 @@ interface IRadioQuest {
   type: string;
   options: Array<IOption>;
   stateValue: string;
-  setState(type: string, value: number);
+  setState(type: string, value: number, text: string);
 }
 
 const RadioQuest: React.FC<IRadioQuest> = (props) => {
@@ -21,7 +21,7 @@ const RadioQuest: React.FC<IRadioQuest> = (props) => {
       <span className="block mb-4">{title}</span>
 
       {options.map((option) => (
-        <div className="mb-3">
+        <div className="mb-3" key={option.value}>
           <input
             className="mr-2"
             type="radio"
@@ -29,7 +29,9 @@ const RadioQuest: React.FC<IRadioQuest> = (props) => {
             name={type}
             checked={stateValue === `${option.value}`}
             value={option.value}
-            onChange={(e) => setState(type, Number(e.target.value))}
+            onChange={(e) => {
+              setState(type, Number(e.target.value), option.text);
+            }}
           />
           <label htmlFor={option.text}>{option.text}</label>
         </div>

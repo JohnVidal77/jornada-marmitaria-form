@@ -132,14 +132,16 @@ const Home: React.FC = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<Map<string, number>>(
     new Map(),
   );
+  const [answer, setAnswer] = useState<Map<string, string>>(new Map());
   const [questionEight, setQuestionEight] = useState('');
   const [questionNine, setQuestionNine] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [level, setLevel] = useState(0);
 
-  const selectAnswer = (type: string, value: number) => {
+  const selectAnswer = (type: string, value: number, text: string) => {
     setSelectedAnswer(new Map(selectedAnswer.set(type, value)));
+    setAnswer(new Map(answer.set(type, text)));
   };
 
   const handleReset = () => {
@@ -170,7 +172,18 @@ const Home: React.FC = () => {
       user_id: 'user_6kJUL0UUOlrnNzl1TrDFo',
       template_params: {
         receiver: 'rafaelbarbosa01+1r1or4qqpjgwchgan6mn@boards.trello.com',
-        subject: `${name} -  ${phone} - NIVEL ${level}`,
+        subject: `${name} -  ${phone} - NIVEL ${lvl}`,
+        name,
+        phone,
+        one: answer.get('exist'),
+        two: answer.get('support'),
+        three: answer.get('inventory'),
+        four: answer.get('socialMedia'),
+        five: answer.get('hasGoogle'),
+        six: answer.get('planning'),
+        seven: answer.get('investment'),
+        eight: questionEight,
+        nine: questionNine,
       },
     };
 
@@ -227,6 +240,7 @@ const Home: React.FC = () => {
 
               {questions.map((question) => (
                 <RadioQuest
+                  key={question.type}
                   title={question.title}
                   type={question.type}
                   options={question.options}
