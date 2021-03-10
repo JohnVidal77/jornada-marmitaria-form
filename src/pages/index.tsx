@@ -132,7 +132,7 @@ const Home: React.FC = () => {
   );
   const [questionEight, setQuestionEight] = useState('');
   const [questionNine, setQuestionNine] = useState('');
-  const [level, setLevel] = useState(1);
+  const [level, setLevel] = useState(0);
 
   const selectAnswer = (type: string, value: number) => {
     setSelectedAnswer(new Map(selectedAnswer.set(type, value)));
@@ -152,6 +152,8 @@ const Home: React.FC = () => {
     if (result > 33) lvl = 3;
 
     setLevel(lvl);
+
+    // TODO: send email
   };
 
   let link = 'https://go.kiwify.com.br/jklNYdg';
