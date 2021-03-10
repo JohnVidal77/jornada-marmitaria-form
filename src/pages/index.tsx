@@ -132,6 +132,8 @@ const Home: React.FC = () => {
   );
   const [questionEight, setQuestionEight] = useState('');
   const [questionNine, setQuestionNine] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [level, setLevel] = useState(0);
 
   const selectAnswer = (type: string, value: number) => {
@@ -160,7 +162,24 @@ const Home: React.FC = () => {
 
     setLevel(lvl);
 
-    // TODO: send email
+    const emailDate = {
+      service_id: 'service_uvlwmag',
+      template_id: 'template_0VMkQIcx',
+      user_id: 'user_6kJUL0UUOlrnNzl1TrDFo',
+      template_params: {
+        receiver: 'rafaelbarbosa01+1r1or4qqpjgwchgan6mn@boards.trello.com',
+        subject: `${name} -  ${phone} - NIVEL ${level}`,
+      },
+    };
+
+    fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      method: 'post',
+      body: JSON.stringify(emailDate), // opcional
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => console.log(err));
   };
 
   let link = 'https://go.kiwify.com.br/jklNYdg';
@@ -187,7 +206,24 @@ const Home: React.FC = () => {
           <form onSubmit={handleSubmitForm}>
             <fieldset className="mb-4 text-lg">
               <legend className="text-2xl font-bold mb-4">
-                Primeiro responda algumas perguntas para te conhecermos melhor!
+                Primeiro precisamos de alguns dados!
+              </legend>
+              <input
+                className="block border rounded-md p-2 w-full mb-4"
+                type="text"
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Seu Nome"
+              />
+              <input
+                className="block border rounded-md p-2 w-full mb-4"
+                type="number"
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Seu Whatsapp"
+              />
+            </fieldset>
+            <fieldset className="mb-4 text-lg">
+              <legend className="text-2xl font-bold mb-4">
+                Agora, responda algumas perguntas para te conhecermos melhor!
               </legend>
 
               {questions.map((question) => (
@@ -261,12 +297,12 @@ const Home: React.FC = () => {
             <div className="flex flex-col md:flex-row justify-center">
               <a
                 href={link}
-                className="p-4 w-full my-2 md:mx-2 md:w-auto duration-200 bg-yellow-400 hover:bg-yellow-600 rounded-lg"
+                className="p-4 w-full my-2 md:mx-2 md:w-auto duration-200 bg-yellow-400 hover:bg-yellow-600 font-bold rounded-lg"
                 type="button">
                 Entrar para ComuVip
               </a>
               <button
-                className="p-4 w-full my-2 md:mx-2 md:w-auto duration-200 hover:opacity-50 bg-transparent border border-black rounded-lg"
+                className="p-4 w-full my-2 md:mx-2 md:w-auto duration-200 hover:opacity-50 bg-transparent border border-black font-bold rounded-lg"
                 type="button"
                 onClick={handleReset}>
                 Quero Preencher novamente
