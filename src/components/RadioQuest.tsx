@@ -18,7 +18,7 @@ const RadioQuest: React.FC<IRadioQuest> = (props) => {
 
   return (
     <div className="mb-8 text-xl">
-      <span className="block mb-4">{title}</span>
+      <span className="block mb-4 font-bold">{title}</span>
 
       {options.map((option) => (
         <div className="mb-3" key={option.value}>
