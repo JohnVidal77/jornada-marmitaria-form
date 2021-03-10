@@ -1,6 +1,8 @@
 import React, {FormEvent, useState} from 'react';
 import Image from 'next/image';
 
+import Api from '../services/api';
+
 import RadioQuest from '../components/RadioQuest';
 import StarList from '../components/StarList';
 
@@ -147,7 +149,7 @@ const Home: React.FC = () => {
     setSelectedAnswer(new Map());
   };
 
-  const handleSubmitForm = (event: FormEvent) => {
+  const handleSubmitForm = async (event: FormEvent) => {
     event.preventDefault();
 
     const arrayOfResuls = Array.from(selectedAnswer.values());
@@ -172,14 +174,11 @@ const Home: React.FC = () => {
       },
     };
 
-    fetch('https://api.emailjs.com/api/v1.0/email/send', {
-      method: 'post',
-      body: JSON.stringify(emailDate), // opcional
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => console.log(err));
+    try {
+      await Api.post('email/send', emailDate);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   let link = 'https://go.kiwify.com.br/jklNYdg';
