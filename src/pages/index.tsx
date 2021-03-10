@@ -1,7 +1,9 @@
-import React, {FormEvent, useState} from 'react';
+import React, {FormEvent, useCallback, useState} from 'react';
 import Image from 'next/image';
 
 import Api from '../services/api';
+import FormatPhone from '../services/FormatPhone';
+import CleanNumber from '../services/CleanNumber';
 
 import RadioQuest from '../components/RadioQuest';
 import StarList from '../components/StarList';
@@ -151,6 +153,11 @@ const Home: React.FC = () => {
     setSelectedAnswer(new Map());
   };
 
+  const handleInputMask = useCallback((value) => {
+    const formated = FormatPhone(value);
+    setPhone(formated);
+  }, []);
+
   const handleSubmitForm = async (event: FormEvent) => {
     event.preventDefault();
 
@@ -174,7 +181,7 @@ const Home: React.FC = () => {
         receiver: 'rafaelbarbosa01+1r1or4qqpjgwchgan6mn@boards.trello.com',
         subject: `${name} -  ${phone} - NIVEL ${lvl}`,
         name,
-        phone,
+        phone: CleanNumber(phone),
         one: answer.get('exist'),
         two: answer.get('support'),
         three: answer.get('inventory'),
@@ -228,8 +235,9 @@ const Home: React.FC = () => {
               />
               <input
                 className="block border rounded-md p-2 w-full mb-4"
-                type="number"
-                onChange={(e) => setPhone(e.target.value)}
+                type="text"
+                value={phone}
+                onChange={(e) => handleInputMask(e.target.value)}
                 placeholder="Seu Whatsapp"
               />
             </fieldset>
