@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://api.emailjs.com/api/v1.0/',
+  baseURL: process.env.API_BASE_URL,
 });
 
 export default api;

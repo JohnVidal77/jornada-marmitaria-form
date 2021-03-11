@@ -1,7 +1,7 @@
 import React, {FormEvent, useCallback, useState} from 'react';
 import Image from 'next/image';
 
-import Api from '../services/api';
+import Api from '../services/Api';
 import FormatPhone from '../services/FormatPhone';
 import CleanNumber from '../services/CleanNumber';
 
@@ -174,28 +174,22 @@ const Home: React.FC = () => {
     setLevel(lvl);
 
     const emailDate = {
-      service_id: 'service_uvlwmag',
-      template_id: 'template_0VMkQIcx',
-      user_id: 'user_6kJUL0UUOlrnNzl1TrDFo',
-      template_params: {
-        receiver: 'rafaelbarbosa01+1r1or4qqpjgwchgan6mn@boards.trello.com',
-        subject: `${name} -  ${phone} - NIVEL ${lvl}`,
-        name,
-        phone: CleanNumber(phone),
-        one: answer.get('exist'),
-        two: answer.get('support'),
-        three: answer.get('inventory'),
-        four: answer.get('socialMedia'),
-        five: answer.get('hasGoogle'),
-        six: answer.get('planning'),
-        seven: answer.get('investment'),
-        eight: questionEight,
-        nine: questionNine,
-      },
+      name,
+      phone,
+      level: lvl,
+      one: answer.get('exist'),
+      two: answer.get('support'),
+      three: answer.get('inventory'),
+      four: answer.get('socialMedia'),
+      five: answer.get('hasGoogle'),
+      six: answer.get('planning'),
+      seven: answer.get('investment'),
+      eight: questionEight,
+      nine: questionNine,
     };
 
     try {
-      await Api.post('email/send', emailDate);
+      await Api.post('/api/email/send', emailDate);
     } catch (err) {
       console.log(err);
     }
