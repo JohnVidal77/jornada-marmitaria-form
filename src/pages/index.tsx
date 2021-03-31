@@ -194,11 +194,16 @@ const Home: React.FC = () => {
     }
   };
 
-  let link = 'https://go.kiwify.com.br/jklNYdg';
+  let link =
+    'https://www.sistemameudelivery.com.br/clubdasmarmiteiras/grupo-whatsapp-entrar.html';
 
-  if (level === 2) link = 'https://go.kiwify.com.br/KdqFu4C';
+  if (level === 2)
+    link =
+      'https://www.sistemameudelivery.com.br/clubdasmarmiteiras/grupo-whatsapp-entrar.html';
 
-  if (level === 3) link = 'https://go.kiwify.com.br/JHvUAiJ';
+  if (level === 3)
+    link =
+      'https://www.sistemameudelivery.com.br/clubdasmarmiteiras/grupo-whatsapp-entrar.html';
 
   return (
     <div className="w-screen h-full min-h-screen bg-primary">
@@ -313,7 +318,7 @@ const Home: React.FC = () => {
                 href={link}
                 className="p-4 w-full my-2 md:mx-2 md:w-auto duration-200 bg-yellow-400 hover:bg-yellow-600 font-bold rounded-lg"
                 type="button">
-                Entrar para ComuVip
+                Entrar para o Grupo de Espera
               </a>
               <button
                 className="p-4 w-full my-2 md:mx-2 md:w-auto duration-200 hover:opacity-50 bg-transparent border border-black font-bold rounded-lg"
