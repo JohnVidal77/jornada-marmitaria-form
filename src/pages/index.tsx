@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import Api from '../services/Api';
 import FormatPhone from '../services/FormatPhone';
+import CleanNumber from '../services/CleanNumber';
 
 import RadioQuest from '../components/RadioQuest';
 import StarList from '../components/StarList';
