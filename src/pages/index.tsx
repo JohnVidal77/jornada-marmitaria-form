@@ -195,16 +195,11 @@ const Home: React.FC = () => {
     }
   };
 
-  let link =
-    'https://www.sistemameudelivery.com.br/clubdasmarmiteiras/grupo-whatsapp-entrar.html';
+  let link = 'https://go.kiwify.com.br/jklNYdg';
 
-  if (level === 2)
-    link =
-      'https://www.sistemameudelivery.com.br/clubdasmarmiteiras/grupo-whatsapp-entrar.html';
+  if (level === 2) link = 'https://go.kiwify.com.br/KdqFu4C';
 
-  if (level === 3)
-    link =
-      'https://www.sistemameudelivery.com.br/clubdasmarmiteiras/grupo-whatsapp-entrar.html';
+  if (level === 3) link = 'https://go.kiwify.com.br/JHvUAiJ';
 
   return (
     <div className="w-screen h-full min-h-screen bg-primary">
